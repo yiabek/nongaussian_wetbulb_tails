@@ -2,9 +2,9 @@
 # -*- coding: utf-8 -*-
 """ WetBulb_NoNaN
 
-This script is identical to the original Python implementation 
+This script is nearly identical to the original Python implementation 
 by Xianxiang Li of the Matlab code by Robert Kopp.
-Modified by Yianna Bekris to remove NaNs produced so the 
+It has been modified by Yianna Bekris to remove NaNs produced so the 
 wet-bulb temperature array can be passed to the
 shift_ratio and wamring ratio functions in twb_tails.py 
 
