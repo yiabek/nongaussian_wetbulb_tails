@@ -338,19 +338,19 @@ def shift_ratio(ptile, shift, anom, lon, lat):
 # -----  T2Manom_data is 2-meter temperature anomaly data output from Seasonal_Anomalies function above
 # -----  lon and lat are longitude and latitude arrays output from Seasonal_Anomalies function above
 # ---------  Output is global shift ratios
-def WarmRatio_Calc(ptile, future_anom, lon, lat, warming, past_anom): # took msk out
+def warming_retio(ptile, future_anom, lon, lat, warming, past_anom): # took msk out
     print(("   Computing Non-Gaussian to Gaussian warming ratio..."), end=' ')
 
-    ##get rid of nan and inf
-    # where_are_NaNs = numpy.isnan(TWBanom)
-    # TWBanom[where_are_NaNs] = 0
-    # where_inf = numpy.isinf(TWBanom)
-    # TWBanom[where_inf] = 0
+    ## Remove NaN and Inf if necessary
+    # where_are_NaNs = np.isnan(future_anom)
+    # future_anom[where_are_NaNs] = 0
+    # where_inf = np.isinf(future_anom)
+    # future_anom[where_inf] = 0
 
-    # where_are_pNaNs = numpy.isnan(pTWBanom)
-    # pTWBanom[where_are_pNaNs] = 0
-    # where_pinf = numpy.isinf(pTWBanom)
-    # pTWBanom[where_pinf] = 0
+    # where_are_pNaNs = np.isnan(past_anom)
+    # past_anom[where_are_pNaNs] = 0
+    # where_pinf = np.isinf(past_anom)
+    # past_anom[where_pinf] = 0
 
     ### Add axis 2 to warming for "warm ratio" calculation
     warming = (np.repeat(warming[:, :, np.newaxis], past_anom.shape[2], axis=2))
