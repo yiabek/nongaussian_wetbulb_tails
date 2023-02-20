@@ -236,9 +236,8 @@ def wetbulb_anom(SH_array, T_array, SLP_array, leapstr):
 ### Compute shift ratio of Non-Gaussian to Gaussian distribution tails specified using "ptile" percentile
 # -----  ptile is percentile to define tail of distribution of interest
 # -----  shift is the value used to shift the distribution as a warming scenario
-# -----  msk is output from Region_Mask function, masking to land grid cells
-# -----  T2Manom_data is 2-meter temperature anomaly data output from Seasonal_Anomalies function above
-# -----  lon and lat are longitude and latitude arrays output from Seasonal_Anomalies function above
+# -----  anom is 2-meter temperature anomaly data output from wetbulb_anom function above
+# -----  lon and lat are longitude and latitude arrays output from wetbulb_anom function above
 # ---------  Output is global shift ratios
 def shift_ratio(ptile, shift, anom, lon, lat):
     
@@ -331,14 +330,13 @@ def shift_ratio(ptile, shift, anom, lon, lat):
 
 # ======================================================================
 ### warming_ratio
-### Compute shift ratio of Non-Gaussian to Gaussian distribution tails specified using "ptile" percentile
+### Compute warming ratio of Non-Gaussian to Gaussian distribution tails specified using "ptile" percentile
 # -----  ptile is percentile to define tail of distribution of interest
-# -----  shift is the value used to shift the distribution as a warming scenario
-# -----  msk is output from Region_Mask function, masking to land grid cells
-# -----  T2Manom_data is 2-meter temperature anomaly data output from Seasonal_Anomalies function above
-# -----  lon and lat are longitude and latitude arrays output from Seasonal_Anomalies function above
+# -----  past_anom is 2-meter temperature anomaly data output from wetbulb_anom function above
+# -----  future_anom is 2-meter temperature anomaly data output from adding warming to wetbulb_anom function above
+# -----  lon and lat are longitude and latitude arrays output from wetbulb_anom function above
 # ---------  Output is global shift ratios
-def warming_retio(ptile, future_anom, lon, lat, warming, past_anom): # took msk out
+def warming_retio(ptile, future_anom, lon, lat, warming, past_anom): 
     print(("   Computing Non-Gaussian to Gaussian warming ratio..."), end=' ')
 
     ## Remove NaN and Inf if necessary
