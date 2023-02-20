@@ -49,21 +49,24 @@ np.set_printoptions(threshold=sys.maxsize)
 ## outfile_name is the resulting file, given as a string
 def concat_files(infiles, outfile_name):
     
-    # Read files and sort
+    ## Read files and sort
     nc_files = sorted(glob.glob(infiles))
     nc_list = []
     
-    # Loop through and take a daily mean
+    ## Loop through and take a daily mean
     for entry in nc_files:
         
-        # keep attributes of original files
+        ## Keep attributes of original files
         xr.set_options(keep_attrs=True)
         
-        # open file
+        ## Open file
         ds = xr.open_dataset(entry)
+        
+        ## Daily mean
         ds = ds.resample(time='1D').mean()
         nc_list.append(ds)      
     
+    ## Concatenate along time dimension
     nc_concat = xr.concat(nc_list, dim='time')
     nc_concat.to_netcdf(outfile_name)
     
