@@ -20,7 +20,7 @@ Including:
   (6) shift_ratio
   (7) warming_ratio
   
-Modified by: Yianna Bekris 
+Updated by: Yianna Bekris 
 Original code by: Dr. Arielle Catalano
 
 ======================================================================
@@ -47,7 +47,8 @@ np.set_printoptions(threshold=sys.maxsize)
 ### concat_files
 ## infiles is the path given as a string
 ## outfile_name is the resulting file, given as a string
-def concat_files(infiles, outfile_name):
+## rs_period is the resample period as a string
+def concat_files(infiles, outfile_name, rs_period):
     
     ## Read files and sort
     nc_files = sorted(glob.glob(infiles))
@@ -63,7 +64,7 @@ def concat_files(infiles, outfile_name):
         ds = xr.open_dataset(entry)
         
         ## Daily mean
-        ds = ds.resample(time='1D').mean()
+        ds = ds.resample(time=rs_period).mean()
         nc_list.append(ds)      
     
     ## Concatenate along time dimension
@@ -339,7 +340,7 @@ def shift_ratio(ptile, shift, anom, lon, lat):
 # -----  future_anom is 2-meter temperature anomaly data output from adding warming to wetbulb_anom function above
 # -----  lon and lat are longitude and latitude arrays output from wetbulb_anom function above
 # ---------  Output is global shift ratios
-def warming_retio(ptile, future_anom, lon, lat, warming, past_anom): 
+def warming_ratio(ptile, future_anom, lon, lat, warming, past_anom): 
     print(("   Computing Non-Gaussian to Gaussian warming ratio..."), end=' ')
 
     ## Remove NaN and Inf if necessary
