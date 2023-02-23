@@ -65,7 +65,9 @@ def concat_files(infiles, outfile_name, rs_period):
         
         ## Daily mean
         ds = ds.resample(time=rs_period).mean()
-        nc_list.append(ds)      
+        nc_list.append(ds)   
+        ds.close()
+        
     
     ## Concatenate along time dimension
     nc_concat = xr.concat(nc_list, dim='time')
@@ -199,7 +201,7 @@ def date_subset(
     if varunits == 'K' or varunits == 'Kelvin':
        var_data = var_data - 273.15
 
-    print("...Array subsetted to time period specified!")
+    print("...Array subset to time period specified!")
 
     return var_data, leapstr, lat, lon
 
